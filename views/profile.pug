@@ -1,0 +1,105 @@
+link(rel='stylesheet', href='../css/profile.css')
+
+doctype html
+head
+  meta(charset='UTF-8')
+  meta(name='viewport' content='width=device-width, initial-scale=1.0')
+  title Profile Page
+  // Custom Css
+  link(rel='stylesheet' href='style.css')
+  // FontAwesome 5
+  link(rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css')
+// Navbar top
+.navbar-top
+  .title
+    h1 Profile
+  // Navbar
+  ul
+    li
+      a(href='#message')
+        span.icon-count 29
+        i.fa.fa-envelope.fa-2x
+    li
+      a(href='#notification')
+        span.icon-count 59
+        i.fa.fa-bell.fa-2x
+    li
+      a(href='#sign-out')
+        i.fa.fa-sign-out-alt.fa-2x
+  // End
+// End
+// Sidenav
+.sidenav
+  .profile
+    img(src='https://imdezcode.files.wordpress.com/2020/02/imdezcode-logo.png' alt='' width='100' height='100')
+    .name
+      | ImDezCode
+    .job
+      | Web Developer
+  .sidenav-url
+    .url
+      a.active(href='#profile') Profile
+      hr(align='center')
+    .url
+      a(href='#settings') Settings
+      hr(align='center')
+// End
+// Main
+.main
+  h2 IDENTITY
+  .card
+    .card-body
+      i.fa.fa-pen.fa-xs.edit
+      table
+        tbody
+          tr
+            td Name
+            td :
+            td ImDezCode
+          tr
+            td Email
+            td :
+            td imdezcode@gmail.com
+          tr
+            td Address
+            td :
+            td Bali, Indonesia
+          tr
+            td Hobbies
+            td :
+            td Diving, Reading Book
+          tr
+            td Job
+            td :
+            td Web Developer
+          tr
+            td Skill
+            td :
+            td PHP, HTML, CSS, Java
+  h2 SOCIAL MEDIA
+  .card
+    .card-body
+      i.fa.fa-pen.fa-xs.edit
+      .social-media
+        span.fa-stack.fa-sm
+          i.fas.fa-circle.fa-stack-2x
+          i.fab.fa-facebook.fa-stack-1x.fa-inverse
+        span.fa-stack.fa-sm
+          i.fas.fa-circle.fa-stack-2x
+          i.fab.fa-twitter.fa-stack-1x.fa-inverse
+        span.fa-stack.fa-sm
+          i.fas.fa-circle.fa-stack-2x
+          i.fab.fa-instagram.fa-stack-1x.fa-inverse
+        span.fa-stack.fa-sm
+          i.fas.fa-circle.fa-stack-2x
+          i.fab.fa-invision.fa-stack-1x.fa-inverse
+        span.fa-stack.fa-sm
+          i.fas.fa-circle.fa-stack-2x
+          i.fab.fa-github.fa-stack-1x.fa-inverse
+        span.fa-stack.fa-sm
+          i.fas.fa-circle.fa-stack-2x
+          i.fab.fa-whatsapp.fa-stack-1x.fa-inverse
+        span.fa-stack.fa-sm
+          i.fas.fa-circle.fa-stack-2x
+          i.fab.fa-snapchat.fa-stack-1x.fa-inverse
+// End

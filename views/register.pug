@@ -1,0 +1,60 @@
+link(rel='stylesheet', href='../css/register.css')
+.form_wrapper
+  .form_container
+    .title_container
+      h2 Responsive Registration Form
+    .row.clearfix
+      div
+        form(action = "/submit-register" method = "POST")
+          .input_field
+            span
+              i.fa.fa-user(aria-hidden='true')
+            input(type='text' name='firstName' value ='Utsav' placeholder='First Name')
+          .input_field
+            span
+              i.fa.fa-user(aria-hidden='true')
+            input(type='text' name='lastName' value ='Utsav' placeholder='Last Name' required)
+          .input_field
+            span
+              i.fa.fa-user(aria-hidden='true')
+            input(type='text' name='occupation' value ='Utsav' placeholder='Occupation' required)
+          .input_field
+            span
+              i.fa.fa-user(aria-hidden='true')
+            input(type='text' name='salary' value ='10000' placeholder='salary' required)
+
+          .input_field
+            span
+              i.fa.fa-envelope(aria-hidden='true')
+            input(type='email' name='userName' value ='Utsav@openxcell.com' placeholder='Username' required)
+          .input_field
+            span
+              i.fa.fa-lock(aria-hidden='true')
+            input(type='password' name='password' value ='Utsav' placeholder='Password' required)
+          .input_field
+            span
+              i.fa.fa-lock(aria-hidden='true')
+            input(type='password' name='password' value ='Utsav' placeholder='Re-type Password' required)
+          .row.clearfix
+          .input_field.radio_option
+            input#rd1(type='radio' name='radiogroup1')
+            label(for='rd1') Male
+            input#rd2(type='radio' name='radiogroup1')
+            label(for='rd2') Female
+          .input_field.select_option
+            select
+              option Select a country
+              option India
+              option United Kingdom
+              option United States of America
+            .select_arrow
+          .input_field.checkbox_option
+            input#cb1(type='checkbox' value=true)
+            label(for='cb1') I agree with terms and conditions
+          .input_field.checkbox_option
+            input#cb2(type='checkbox')
+            label(for='cb2') I want to receive the newsletter
+          input.button(type='submit' value='Register')
+p.credit
+  | Developed by 
+  a(href='' target='_blank') Utsav
