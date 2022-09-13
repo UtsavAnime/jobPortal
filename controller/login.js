@@ -20,9 +20,7 @@ exports.postLogin = (req,res, next) => {
             req.session.isLoggedIn = true;
             jwt.sign({user:userName}, 'secretkey', (err, token) => {
                 token = token
-                console.log("Hii" + token);
                 req.session.token = token;
-                console.log("Its in request, " + req.session.token);
                 res.json({token});
             });
             console.log("Hello " + req.session.isLoggedIn);

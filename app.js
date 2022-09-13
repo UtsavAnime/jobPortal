@@ -43,10 +43,8 @@ function verifyToken(req, res, next){
 	const bearerHeader = req.headers['authorization'];
 
 	if(bearerHeader != 'undefined'){
-		console.log("Its in request, " + 	req.session.token);
 		const bearer = bearerHeader.split(' ');
 		const bearerToken = bearer[1];
-		console.log("bearerToken, " + bearerToken);
 		if(bearerToken == req.session.token){
 			
 			next()
