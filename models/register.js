@@ -1,24 +1,33 @@
-const getDb = require('../util/database').getDb;
+const mongoose = require('mongoose');
 
-class Register{
-    constructor(firstName, lastName, occupation, salary, userName, password){
-        this.firstName = firstName;                 //this function will save the data inside the class
-        this.lastName = lastName;
-        this.occupation = occupation;
-        this.salary = salary;
-        this.userName = userName;
-        this.password = password;
+const Schema = mongoose.Schema;
+
+const registerSchema = new Schema({
+    firstName: {
+        type: String,
+        require: true
+    },
+    lastName: {
+        type: String,
+        require: true
+    },
+    occupation: {
+        type: String,
+        require: true
+    },
+    salary: {
+        type: Number,
+        require: true
+    },
+    userName: {
+        type: String,
+        require: true
+    },
+    password: {
+        type: String,
+        require: true
     }
+})
 
-    save(){
-        const db = getDb();
-        return db.collection('registeration').insertOne(this).then(result => {
-            console.log(result);
-        }).catch(err => {
-            console.log(err);
-        });
-    };
 
-};
-
-module.exports = Register;
+module.exports = mongoose.model('Register', registerSchema);
