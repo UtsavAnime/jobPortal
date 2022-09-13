@@ -1,6 +1,6 @@
 const bcrypt = require('bcryptjs')
 const Register = require("../models/register");
-
+const jwt = require('jsonwebtoken');
 
 exports.postLogin = (req,res, next) => {
 //  const isLoggedIn = req.get('Cookie').split('=')[1] === true;
@@ -18,9 +18,16 @@ exports.postLogin = (req,res, next) => {
         if(doMatch) {
             req.session.userid = userName;
             req.session.isLoggedIn = true;
+            jwt.sign({user:userName}, 'secretkey', (err, token) => {
+                token = token
+                console.log("Hii" + token);
+                req.session.token = token;
+                console.log("Its in request, " + req.session.token);
+                res.json({token});
+            });
             console.log("Hello " + req.session.isLoggedIn);
-        
-            return res.send("You have been logged in!");
+            return
+            //return res.send("You have been logged in!");
             //return res.redirect('/profile');
             // return res.send("Welcome");
         }

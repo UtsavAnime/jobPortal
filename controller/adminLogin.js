@@ -1,6 +1,6 @@
 const bcrypt = require("bcryptjs");
 const Register = require("../models/adminRegister");
-
+const jwt = require('jsonwebtoken')
 
 exports.register = (req, res, next) => {
 	if (
@@ -57,8 +57,11 @@ exports.postLogin = (req, res, next) => {
 					req.session.userid = userName+"_Admin";
 					req.session.isLoggedIn = true;
 					console.log(req.session.isLoggedIn);
-		
-					return res.send("Welcome");
+					jwt.sign({user:userName}, 'secretkey', (err, token) => {
+						res.json({token});
+					});
+							
+					return 
 				}
 				res.send("Invalid Password");
 			})
