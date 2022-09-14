@@ -23,8 +23,7 @@ exports.postPost = async (req, res) => {
 	if (req.session.userid == null) {
 		res.status(400);
 		res.send("Please login!");
-
-	} 
+	}
 	occupationRequired = req.body.occupationRequired;
 	const job = await jobPost.findOne({
 		occupationRequired: occupationRequired,
@@ -32,10 +31,9 @@ exports.postPost = async (req, res) => {
 	if (job == null) {
 		res.status(400);
 		return res.send(`No job has been posted for this ${occupationRequired}`);
-
-	} 		
+	}
 	const user = await Register.findOne({
-	userName: req.session.userid,
+		userName: req.session.userid,
 	});
 	const jobId = await apply.findOne({
 		jobId: job._id,
@@ -45,21 +43,17 @@ exports.postPost = async (req, res) => {
 		if (jobId) {
 			res.status(400);
 			res.send("You have already applied for this job!");
-		} 			
+		}
 		const RegisterModel = new apply({
-			userId: user._id, 
-			jobId: job._id, 
-		}); 
+			userId: user._id,
+			jobId: job._id,
+		});
 		RegisterModel.save();
 		res.send("Applied!");
-
 	} else {
 		res.status(400);
-		return res.send(
-			`You have already applied for this ${occupationRequired}`);
+		return res.send(`You have already applied for this ${occupationRequired}`);
 	}
-
-
 };
 
 exports.deletePost = async (req, res) => {

@@ -1,6 +1,6 @@
 const bcrypt = require("bcryptjs");
 const Register = require("../models/adminRegister");
-const jwt = require('jsonwebtoken')
+const jwt = require("jsonwebtoken");
 
 exports.register = (req, res, next) => {
 	if (
@@ -24,12 +24,12 @@ exports.register = (req, res, next) => {
 				const RegisterModel = new Register({
 					firstName: firstName,
 					lastName: lastName,
-					userName: userName+"_Admin",
+					userName: userName + "_Admin",
 					password: hashPassword,
 					role: "admin",
 				}); //object
 				console.log(RegisterModel);
-				RegisterModel.save()
+				RegisterModel.save();
 				return res.send(`You have been registered as an admin`);
 			});
 		});
@@ -39,36 +39,34 @@ exports.register = (req, res, next) => {
 exports.postLogin = (req, res, next) => {
 	const userName = req.body.userName;
 	const password = req.body.password;
-	
 
-	Register.findOne({ userName: userName+"_Admin" }).then((user) => {
+	Register.findOne({ userName: userName + "_Admin" }).then((user) => {
 		if (!user) {
 			return res.send("User doesnt exist, please register!");
 		}
-        Register.findOne({ role: "admin" }).then((result) => {
-            if (!result) {
-                return res.send("You are not an admin");
-            }
-    
-		bcrypt
-			.compare(password, user.password)
-			.then((doMatch) => {
-				if (doMatch) {
-					req.session.userid = userName+"_Admin";
-					req.session.isLoggedIn = true;
-					console.log(req.session.isLoggedIn);
-					jwt.sign({user:userName}, 'secretkey', (err, token) => {
-						res.json({token});
-					});
-							
-					return 
-				}
-				res.send("Invalid Password");
-			})
-			.catch((err) => {
-				console.log(err);
-			});
-        })
-	});
+		Register.findOne({ role: "admin" }).then((result) => {
+			if (!result) {
+				return res.send("You are not an admin");
+			}
 
+			bcrypt
+				.compare(password, user.password)
+				.then((doMatch) => {
+					if (doMatch) {
+						req.session.userid = userName + "_Admin";
+						req.session.isLoggedIn = true;
+						console.log(req.session.isLoggedIn);
+						jwt.sign({ user: userName }, "secretkey", (err, token) => {
+							res.json({ token });
+						});
+
+						return;
+					}
+					res.send("Invalid Password");
+				})
+				.catch((err) => {
+					console.log(err);
+				});
+		});
+	});
 };

@@ -5,11 +5,7 @@ exports.postProfile = async (req, res) => {
 	if (req.session.userid != null) {
 		console.log(req.session.userid);
 
-		if (
-			// req.body.userName !== "" &&
-			req.body.occupation !== "" &&
-			req.body.jobDescription !== ""
-		) {
+		if (req.body.occupation !== "" && req.body.jobDescription !== "") {
 			userName = req.session.userid;
 			occupation = req.body.occupation;
 			jobDescription = req.body.jobDescription;
@@ -28,7 +24,6 @@ exports.postProfile = async (req, res) => {
 				ProfileModel.save();
 				return res.send(`Your profile has been saved`);
 			} else {
-				
 				const ProfileModel = new jobProfile({
 					occupation: occupation,
 					jobDescription: jobDescription,
@@ -40,7 +35,7 @@ exports.postProfile = async (req, res) => {
 						{ occupation: occupation, jobDescription: jobDescription }
 					)
 					.then(console.log);
-				
+
 				res.send("Your profile has been updated!");
 			}
 		} else {
