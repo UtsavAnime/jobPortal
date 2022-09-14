@@ -25,8 +25,8 @@ const jobAvailableRoutes = require("./routes/jobAvailable");
 
 app.use(express.urlencoded({extended:false}));
 app.use(bodyParser.json());
-app.use(session({secret: 'Its a secret', resave: false, cookie: { maxAge: 60000 }, saveUninitialized: false, store: storage}))
-app.use(adminsession({secret: 'Its a secret', resave: false, cookie: { maxAge: 60000 }, saveUninitialized: false, store: storage}))
+app.use(session({secret: 'Its a secret', resave: false, cookie: { maxAge: 1200000 }, saveUninitialized: false, store: storage}))
+// app.use(adminsession({secret: 'Its a secret', resave: false, cookie: { maxAge: 60000 }, saveUninitialized: false, store: storage}))
 
 app.use(registerRoutes);
 app.use(loginRoutes);
@@ -43,10 +43,12 @@ function verifyToken(req, res, next){
 	const bearerHeader = req.headers['authorization'];
 
 	if(bearerHeader != 'undefined'){
+		// console.log("Its in request, " + 	req.session.token);
 		const bearer = bearerHeader.split(' ');
 		const bearerToken = bearer[1];
+		// console.log("bearerToken, " + bearerToken);
 		if(bearerToken == req.session.token){
-			
+			// console.log(req.token);
 			next()
 			// req.token = bearerToken
 			// console.log(bearerHeader);

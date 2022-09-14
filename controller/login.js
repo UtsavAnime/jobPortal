@@ -3,9 +3,6 @@ const Register = require("../models/register");
 const jwt = require('jsonwebtoken');
 
 exports.postLogin = (req,res, next) => {
-//  const isLoggedIn = req.get('Cookie').split('=')[1] === true;
-//   isAuthenticated = isLoggedIn;
-//  console.log(isLoggedIn);
  const userName = req.body.userName;
  const password = req.body.password;
 
@@ -25,9 +22,6 @@ exports.postLogin = (req,res, next) => {
             });
             console.log("Hello " + req.session.isLoggedIn);
             return
-            //return res.send("You have been logged in!");
-            //return res.redirect('/profile');
-            // return res.send("Welcome");
         }
         res.send('Invalid Password');
     }).catch(err => {
@@ -38,16 +32,6 @@ exports.postLogin = (req,res, next) => {
  })
 }
 
-// exports.getLogin = (req, res, next) => {
-//     // res.setHeader('Set-Cookie', 'loggedIn = true');
-//     console.log(req.session.userid);
-//     req.session.isLoggedIn = true;
-//     console.log(req.session.isLoggedIn);
-
-//     // res.redirect('/');
-//     res.end()
-
-// }
 
 exports.getLogout = (req, res, next) => {
     // res.setHeader('Set-Cookie', 'loggedIn = true');
