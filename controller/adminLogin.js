@@ -12,7 +12,7 @@ exports.register = (req, res, next) => {
 		firstName = req.body.firstName;
 		lastName = req.body.lastName;
 		userName = req.body.userName;
-		password = req.body.password;
+		password = req.body.password;	
 
 		Register.findOne({ userName: userName }).then((userDoc) => {
 			if (userDoc) {

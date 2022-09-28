@@ -2,9 +2,9 @@ const express = require("express");
 const bodyParser = require("body-parser");
 const mongoose = require("mongoose");
 const session = require("express-session");
-const adminsession = require("express-session");
 const mongodb_storage = require("connect-mongodb-session")(session);
 const jwt = require("jsonwebtoken");
+
 require("dotenv").config();
 
 const mongodb_URI =
@@ -23,6 +23,8 @@ const adminRoutes = require("./routes/adminLogin");
 const profileRoutes = require("./routes/jobProfile");
 const postRoutes = require("./routes/jobPost");
 const jobAvailableRoutes = require("./routes/jobAvailable");
+const fileUpload = require("./routes/fileUpload")
+
 
 app.use(express.urlencoded({ extended: false }));
 app.use(bodyParser.json());
@@ -39,6 +41,7 @@ app.use(
 app.use(registerRoutes);
 app.use(loginRoutes);
 app.use(adminRoutes);
+app.use(fileUpload);
 
 app.use(verifyToken);
 
